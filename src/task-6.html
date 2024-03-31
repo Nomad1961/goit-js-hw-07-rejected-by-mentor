@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task 6</title>
+    <link rel="stylesheet" href="./css/common.css" />
+    <!-- 31 03 24 -------------------------------------- -->
+    <style>
+      #boxes {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .box {
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+      }
+    </style>
+    <!-- end 31 03 24 --------------------------------- -->
+  </head>
+  <body>
+    <p><a href="./index.html">Go back</a></p>
+
+    <div id="controls">
+      <input type="number" min="1" max="100" step="1" />
+      <button type="button" data-create>Create</button>
+      <button type="button" data-destroy>Destroy</button>
+    </div>
+
+    <div id="boxes"></div>
+    <!-- 31 03 24 ------------------------------------ -->
+    <script>
+      function getRandomHexColor() {
+        return `#${Math.floor(Math.random() * 16777215)
+          .toString(16)
+          .padStart(6, '0')}`;
+      }
+
+      const input = document.querySelector('input');
+      const createBtn = document.querySelector('[data-create]');
+      const destroyBtn = document.querySelector('[data-destroy]');
+      const boxesContainer = document.getElementById('boxes');
+
+      createBtn.addEventListener('click', () => {
+        const amount = parseInt(input.value);
+        if (amount >= 1 && amount <= 100) {
+          createBoxes(amount);
+          input.value = '';
+        }
+      });
+
+      destroyBtn.addEventListener('click', () => {
+        destroyBoxes();
+      });
+
+      function createBoxes(amount) {
+        for (let i = 0; i < amount; i++) {
+          const box = document.createElement('div');
+          box.classList.add('box');
+          box.style.width = `${30 + i * 10}px`;
+          box.style.height = `${30 + i * 10}px`;
+          box.style.backgroundColor = getRandomHexColor();
+          boxesContainer.appendChild(box);
+        }
+      }
+
+      function destroyBoxes() {
+        boxesContainer.innerHTML = '';
+      }
+    </script>
+    <!-- end 31 03 24 --------------------------------- -->
+
+    <script src="./js/task-6.js" type="module"></script>
+  </body>
+</html>
