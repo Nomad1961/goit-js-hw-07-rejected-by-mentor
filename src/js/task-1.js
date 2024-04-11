@@ -9,3 +9,4 @@ categoriesList.forEach(category => {
   console.log(`- Категорія: ${categoryName}`);
   console.log(`- Кількість елементів: ${categoryItemsCount}`);
 });
+// END 11 04 24
